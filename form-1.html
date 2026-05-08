@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>자운당 — 자운 아씨와의 대화 1/6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0608;
+    --purple: #6d3a8a;
+    --purple-deep: #4a2858;
+    --purple-glow: #a060c8;
+    --gold: #d4a857;
+    --gold-soft: #b8924a;
+    --paper: #f5ede0;
+    --paper-dim: #d8cdb8;
+    --paper-soft: #a89e7a;
+  }
+
+  html, body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: var(--ink);
+  }
+  .device {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(109, 58, 138, 0.2);
+    padding-bottom: 100px;
+  }
+
+  /* Top bar */
+  .topbar {
+    padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 50;
+    position: relative;
+  }
+  .back-btn {
+    background: transparent;
+    border: 1px solid rgba(212, 168, 87, 0.4);
+    color: var(--paper);
+    width: 32px; height: 32px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .step-indicator {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .step-indicator strong { color: var(--paper); font-weight: 800; }
+
+  /* Character image with bubble space on top */
+  .char-section {
+    width: 100%;
+    position: relative;
+    background: var(--ink);
+  }
+  .bubble-zone {
+    background: linear-gradient(180deg, #1a0a1f 0%, var(--ink) 100%);
+    padding: 24px 16px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .char-image-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1a0a1f 0%, #3a1845 30%, #1a0a1f 100%);
+  }
+  .char-image-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center top;
+  }
+  .char-fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--paper-soft); font-size: 11px;
+  }
+
+  /* Bubbles in dedicated zone above character */
+  .bubble {
+    background: rgba(255, 255, 255, 0.98);
+    color: #0a0608;
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 4px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    line-height: 1.55;
+    letter-spacing: -0.3px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    max-width: 80%;
+    width: fit-content;
+  }
+  .bubble.right {
+    border-radius: 18px 18px 4px 18px;
+    margin-left: auto;
+  }
+  .bubble strong { color: var(--purple); font-weight: 800; }
+
+  /* Form area */
+  .form-area {
+    padding: 24px 22px 32px;
+  }
+  .form-title {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--paper);
+    margin-bottom: 18px;
+    letter-spacing: -0.3px;
+    border-left: 3px solid var(--purple-glow);
+    padding-left: 10px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+  .field label {
+    display: block;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .field input[type="text"],
+  .field select {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(245, 237, 224, 0.06);
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    color: var(--paper);
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    outline: none;
+  }
+  .field input[type="text"]:focus,
+  .field select:focus {
+    border-color: var(--purple-glow);
+    background: rgba(160, 96, 200, 0.1);
+  }
+  .field input::placeholder { color: var(--paper-soft); }
+
+  .row-3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .calendar-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .cal-btn {
+    flex: 1;
+    padding: 10px 8px;
+    background: transparent;
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    color: var(--paper-dim);
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .cal-btn.active {
+    background: var(--purple-deep);
+    border-color: var(--gold);
+    color: var(--paper);
+  }
+
+  /* Time selector grid */
+  .time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .time-btn {
+    padding: 10px 4px;
+    background: rgba(245, 237, 224, 0.04);
+    border: 1px solid rgba(212, 168, 87, 0.25);
+    color: var(--paper-dim);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .time-btn .ch {
+    display: block;
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+  .time-btn.active {
+    background: var(--purple-deep);
+    border-color: var(--gold);
+    color: var(--paper);
+  }
+  .time-btn.active .ch { color: var(--paper); }
+
+  /* Gender toggle */
+  .gender-toggle {
+    display: flex;
+    gap: 8px;
+  }
+  .gender-btn {
+    flex: 1;
+    padding: 14px 8px;
+    background: transparent;
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    color: var(--paper-dim);
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .gender-btn.active {
+    background: var(--purple-deep);
+    border-color: var(--gold);
+    color: var(--paper);
+  }
+
+  /* Bottom buttons */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 16px 22px;
+    background: linear-gradient(180deg, transparent, var(--ink) 30%);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+  }
+  .bottom-bar-inner {
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    gap: 8px;
+  }
+  .btn-prev, .btn-next {
+    padding: 17px 18px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+  }
+  .btn-prev {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid var(--paper-dim);
+    color: var(--paper);
+    padding-left: 22px; padding-right: 22px;
+  }
+  .btn-next {
+    flex: 1;
+    background: linear-gradient(180deg, var(--purple-glow), var(--purple));
+    color: var(--paper);
+    border: 1px solid var(--gold);
+    box-shadow:
+      0 4px 16px rgba(160, 96, 200, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    letter-spacing: 1px;
+  }
+  .btn-next:disabled {
+    background: rgba(160, 96, 200, 0.2);
+    color: var(--paper-soft);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: rgba(212, 168, 87, 0.15);
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple-glow), var(--gold));
+    width: 16.67%;  /* 1/6 */
+    transition: width 0.4s ease;
+  }
+</style>
+</head>
+<body>
+<div class="device">
+
+  <div class="topbar">
+    <a href="index.html" class="back-btn">‹</a>
+    <div class="step-indicator"><strong>1</strong> / 6</div>
+    <div style="width:32px"></div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+
+  <!-- Character → Bubbles BELOW -->
+  <section class="char-section">
+    <div class="char-image-wrap">
+      <img src="assets/character-sunset.jpg" alt="자운 아씨"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="char-fallback" style="display:none;">— 자운 아씨 노을 컷 —</div>
+    </div>
+    <div class="bubble-zone">
+      <div class="bubble">
+        잘 오셨습니다.<br>자운당, 자운 아씨예요.
+      </div>
+      <div class="bubble right">
+        그대의 <strong>성함과 생년월일</strong>을 먼저 짚어보겠습니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="form-area">
+    <h2 class="form-title">자운당에 적어주십시오</h2>
+
+    <div class="field">
+      <label for="name">성함</label>
+      <input type="text" id="name" placeholder="성함을 적어주세요" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label>달력 — 양력 또는 음력</label>
+      <div class="calendar-toggle">
+        <button type="button" class="cal-btn active" data-cal="solar">양력</button>
+        <button type="button" class="cal-btn" data-cal="lunar">음력</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>태어난 해 · 달 · 날</label>
+      <div class="row-3">
+        <input type="text" id="year" placeholder="1990" maxlength="4" inputmode="numeric">
+        <input type="text" id="month" placeholder="1" maxlength="2" inputmode="numeric">
+        <input type="text" id="day" placeholder="1" maxlength="2" inputmode="numeric">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>태어난 시 — 모르시면 건너뛰셔도 좋습니다</label>
+      <div class="time-grid">
+        <button type="button" class="time-btn" data-time="子"><span class="ch">子</span>23–01시</button>
+        <button type="button" class="time-btn" data-time="丑"><span class="ch">丑</span>01–03시</button>
+        <button type="button" class="time-btn" data-time="寅"><span class="ch">寅</span>03–05시</button>
+        <button type="button" class="time-btn" data-time="卯"><span class="ch">卯</span>05–07시</button>
+        <button type="button" class="time-btn" data-time="辰"><span class="ch">辰</span>07–09시</button>
+        <button type="button" class="time-btn" data-time="巳"><span class="ch">巳</span>09–11시</button>
+        <button type="button" class="time-btn" data-time="午"><span class="ch">午</span>11–13시</button>
+        <button type="button" class="time-btn" data-time="未"><span class="ch">未</span>13–15시</button>
+        <button type="button" class="time-btn" data-time="申"><span class="ch">申</span>15–17시</button>
+        <button type="button" class="time-btn" data-time="酉"><span class="ch">酉</span>17–19시</button>
+        <button type="button" class="time-btn" data-time="戌"><span class="ch">戌</span>19–21시</button>
+        <button type="button" class="time-btn" data-time="亥"><span class="ch">亥</span>21–23시</button>
+        <button type="button" class="time-btn time-unknown" data-time="unknown" style="grid-column: 1 / -1; padding: 10px 8px;">
+          <span style="font-size:13px; color:var(--paper-dim);">시(時)를 모르겠습니다</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>성별</label>
+      <div class="gender-toggle">
+        <button type="button" class="gender-btn" data-gender="female">여성</button>
+        <button type="button" class="gender-btn" data-gender="male">남성</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom -->
+  <div class="bottom-bar">
+    <div class="bottom-bar-inner">
+      <a href="index.html" class="btn-prev">이전</a>
+      <button type="button" class="btn-next" id="nextBtn" disabled>잘 받았습니다 →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // 데이터 저장
+  const data = JSON.parse(sessionStorage.getItem('saju_input') || '{}');
+
+  // 캘린더 토글
+  document.querySelectorAll('.cal-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cal-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      data.calendar = btn.dataset.cal;
+      validate();
+    });
+  });
+
+  // 시간 토글
+  document.querySelectorAll('.time-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      data.time = btn.dataset.time;
+      validate();
+    });
+  });
+
+  // 성별 토글
+  document.querySelectorAll('.gender-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      data.gender = btn.dataset.gender;
+      validate();
+    });
+  });
+
+  // 입력 필드 watch
+  ['name', 'year', 'month', 'day'].forEach(id => {
+    document.getElementById(id).addEventListener('input', e => {
+      data[id] = e.target.value.trim();
+      validate();
+    });
+  });
+
+  // 기본값 설정 (이미 저장된 데이터 있으면)
+  if (data.calendar) {
+    document.querySelector(`.cal-btn[data-cal="${data.calendar}"]`)?.click();
+  } else {
+    data.calendar = 'solar';
+  }
+  if (data.time) {
+    document.querySelector(`.time-btn[data-time="${data.time}"]`)?.click();
+  }
+  if (data.gender) {
+    document.querySelector(`.gender-btn[data-gender="${data.gender}"]`)?.click();
+  }
+  if (data.name) document.getElementById('name').value = data.name;
+  if (data.year) document.getElementById('year').value = data.year;
+  if (data.month) document.getElementById('month').value = data.month;
+  if (data.day) document.getElementById('day').value = data.day;
+
+  function validate() {
+    const ok = data.name && data.name.length > 0
+      && data.year && data.year.length === 4
+      && data.month && parseInt(data.month) >= 1 && parseInt(data.month) <= 12
+      && data.day && parseInt(data.day) >= 1 && parseInt(data.day) <= 31
+      && data.gender;
+    document.getElementById('nextBtn').disabled = !ok;
+  }
+  validate();
+
+  // 다음 버튼
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    sessionStorage.setItem('saju_input', JSON.stringify(data));
+    window.location.href = 'form-2.html';
+  });
+</script>
+
+</body>
+</html>

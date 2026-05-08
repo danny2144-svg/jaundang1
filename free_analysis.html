@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>자운당 — 무료 사주 분석</title>
+<meta name="description" content="자운 아씨가 짚어드리는 무료 사주풀이">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cinzel:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0608;
+    --ink-soft: #1a0f12;
+    --purple: #6d3a8a;
+    --purple-deep: #4a2858;
+    --purple-glow: #a060c8;
+    --gold: #d4a857;
+    --gold-soft: #b8924a;
+    --paper: #f5ede0;
+    --paper-dim: #d8cdb8;
+    --paper-soft: #a89e7a;
+    --hot: #e84858;
+  }
+
+  html, body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Pretendard', 'Gowun Batang', 'Nanum Myeongjo', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    font-feature-settings: 'ss10' on;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: var(--ink);
+  }
+  .device {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(109, 58, 138, 0.2);
+  }
+
+  /* ━━━━━━━━━━ TOP BAR ━━━━━━━━━━ */
+  .topbar {
+    position: sticky; top: 0;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    z-index: 50;
+    background: rgba(10, 6, 8, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 168, 87, 0.15);
+  }
+  .back-btn {
+    background: transparent; border: 1px solid rgba(212, 168, 87, 0.4);
+    color: var(--paper); width: 32px; height: 32px;
+    text-decoration: none; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .top-title {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800; font-size: 14px;
+    color: var(--paper); letter-spacing: 1px;
+  }
+  .top-title strong { color: var(--gold); }
+
+  /* ━━━━━━━━━━ HERO INTRO (자운 아씨 인사) ━━━━━━━━━━ */
+  .hero-intro {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #3a1845 0%, #1a0a1f 70%, var(--ink) 100%);
+  }
+  .hero-intro img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .hero-intro-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(10,6,8,0.9) 95%);
+  }
+  .hero-intro-text {
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .hero-intro-name {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    color: var(--paper);
+    text-shadow: 0 4px 16px rgba(0,0,0,0.8);
+    letter-spacing: -0.8px;
+    line-height: 1.3;
+  }
+  .hero-intro-name .accent {
+    color: var(--purple-glow);
+    text-shadow: 0 0 16px rgba(160, 96, 200, 0.7);
+  }
+  .hero-intro-meta {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--paper-dim);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* ━━━━━━━━━━ BUBBLE WELCOME ━━━━━━━━━━ */
+  .bubble-section {
+    padding: 32px 24px 16px;
+  }
+  .bubble {
+    background: rgba(245, 237, 224, 0.08);
+    color: var(--paper);
+    padding: 14px 18px;
+    border-radius: 22px 22px 22px 6px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    max-width: 92%;
+    border: 1px solid rgba(160, 96, 200, 0.2);
+  }
+  .bubble.right {
+    margin-left: auto;
+    background: rgba(160, 96, 200, 0.12);
+    border-radius: 22px 22px 6px 22px;
+    border-color: rgba(160, 96, 200, 0.3);
+  }
+  .bubble-typing {
+    display: inline-flex;
+    gap: 4px;
+    padding: 14px 18px;
+    background: rgba(245, 237, 224, 0.05);
+    border-radius: 22px;
+    margin-bottom: 12px;
+  }
+  .bubble-typing .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--paper-soft);
+    animation: typing 1.4s infinite;
+  }
+  .bubble-typing .dot:nth-child(2) { animation-delay: 0.2s; }
+  .bubble-typing .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* ━━━━━━━━━━ SAJU PILLARS ━━━━━━━━━━ */
+  .section {
+    padding: 32px 20px;
+  }
+  .section-eyebrow {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: '◆'; margin: 0 10px; font-size: 7px; opacity: 0.6;
+  }
+  .section-title {
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--paper);
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: -0.8px;
+  }
+  .section-title .accent { color: var(--purple-glow); }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    background: linear-gradient(180deg, rgba(160, 96, 200, 0.08), rgba(0,0,0,0));
+    padding: 18px 12px;
+  }
+  .pillar { text-align: center; }
+  .pillar-label {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .pillar-chars {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212, 168, 87, 0.25);
+    padding: 10px 4px;
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+  }
+  .pillar-heaven {
+    color: var(--purple-glow);
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pillar-earth {
+    color: var(--gold);
+    font-size: 24px;
+    line-height: 1;
+  }
+  .pillar-meaning {
+    font-size: 10px;
+    color: var(--paper-dim);
+    margin-top: 6px;
+    letter-spacing: 0;
+  }
+
+  /* ━━━━━━━━━━ DAY MASTER (일주) ━━━━━━━━━━ */
+  .day-master {
+    margin-top: 24px;
+    padding: 24px 22px;
+    background: linear-gradient(135deg, rgba(160, 96, 200, 0.15), rgba(109, 58, 138, 0.05));
+    border: 1px solid var(--gold);
+    text-align: center;
+  }
+  .day-master-label {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  .day-master-title {
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--paper);
+    margin-bottom: 12px;
+    letter-spacing: -0.8px;
+  }
+  .day-master-title .accent {
+    color: var(--purple-glow);
+    text-shadow: 0 0 16px rgba(160, 96, 200, 0.5);
+  }
+  .day-master-summary {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--paper);
+  }
+
+  /* ━━━━━━━━━━ FIVE ELEMENTS CHART ━━━━━━━━━━ */
+  .elements-chart {
+    margin-top: 24px;
+    padding: 22px 20px;
+    background: rgba(245, 237, 224, 0.04);
+    border: 1px solid rgba(212, 168, 87, 0.25);
+  }
+  .elements-bars {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    height: 130px;
+    margin-bottom: 16px;
+  }
+  .element {
+    flex: 1;
+    text-align: center;
+  }
+  .element-bar-wrap {
+    height: 90px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+  .element-bar {
+    width: 70%;
+    transition: height 1.2s ease;
+    border-radius: 2px 2px 0 0;
+  }
+  .element[data-elem="wood"] .element-bar { background: linear-gradient(180deg, #5a8a3a, #2a4818); }
+  .element[data-elem="fire"] .element-bar { background: linear-gradient(180deg, #ff5a4a, #8a1f18); }
+  .element[data-elem="earth"] .element-bar { background: linear-gradient(180deg, #c8a868, #6a5028); }
+  .element[data-elem="metal"] .element-bar { background: linear-gradient(180deg, #d8d0b8, #6a6248); }
+  .element[data-elem="water"] .element-bar { background: linear-gradient(180deg, #4878a8, #182838); }
+  .element-name {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--paper);
+    margin-top: 8px;
+  }
+  .element-count {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 10px;
+    color: var(--paper-dim);
+    margin-top: 2px;
+  }
+  .elements-summary {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--paper);
+    text-align: center;
+  }
+  .elements-summary strong { color: var(--purple-glow); font-weight: 700; }
+
+  /* ━━━━━━━━━━ READING CARDS (무료 풀이 5섹션) ━━━━━━━━━━ */
+  .reading-card {
+    background: linear-gradient(180deg, rgba(245, 237, 224, 0.04), rgba(160, 96, 200, 0.03));
+    border: 1px solid rgba(212, 168, 87, 0.25);
+    padding: 22px 20px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .reading-card.highlight {
+    background: linear-gradient(135deg, rgba(160, 96, 200, 0.18), rgba(74, 40, 88, 0.1));
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 24px rgba(160, 96, 200, 0.15);
+  }
+  .reading-card.warning {
+    background: linear-gradient(135deg, rgba(232, 72, 88, 0.06), rgba(74, 40, 88, 0.04));
+    border-left: 3px solid #ff8090;
+  }
+  .reading-card-tag {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    color: var(--purple-glow);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .reading-card-title {
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--paper);
+    margin-bottom: 14px;
+    letter-spacing: -0.4px;
+    line-height: 1.4;
+  }
+  .reading-card-title .ch {
+    color: var(--gold);
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    margin-right: 8px;
+    font-size: 20px;
+  }
+  .reading-card-body {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    line-height: 1.95;
+    color: var(--paper);
+    letter-spacing: -0.2px;
+  }
+
+  /* ━━━━━━━━━━ MID CHARACTER (안내 컷) ━━━━━━━━━━ */
+  .mid-character {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--ink) 0%, #2a1438 50%, var(--ink) 100%);
+    margin: 24px 0;
+  }
+  .mid-character img { width: 100%; height: 100%; object-fit: cover; }
+  .mid-character-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10,6,8,0.8) 90%);
+  }
+  .mid-character-text {
+    position: absolute; bottom: 32px; left: 0; right: 0;
+    text-align: center;
+    padding: 0 28px;
+  }
+  .mid-character-text .ko {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: var(--paper);
+    line-height: 1.4;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.8);
+    letter-spacing: -0.5px;
+  }
+  .mid-character-text .ko .accent {
+    color: var(--purple-glow);
+    text-shadow: 0 0 16px rgba(160, 96, 200, 0.6);
+  }
+
+  /* ━━━━━━━━━━ PREVIEW SECTIONS (미리보기) ━━━━━━━━━━ */
+  .preview-block {
+    margin-bottom: 16px;
+    border: 1px solid rgba(212, 168, 87, 0.25);
+    background: linear-gradient(180deg, rgba(245, 237, 224, 0.04), transparent);
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .preview-block.locked::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, transparent, var(--ink) 80%);
+    pointer-events: none;
+  }
+  .preview-block.locked .lock-overlay {
+    position: absolute;
+    bottom: 16px; left: 0; right: 0;
+    text-align: center;
+    z-index: 5;
+    padding: 0 20px;
+  }
+  .lock-icon {
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .lock-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .preview-h {
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--paper);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .preview-h .ch {
+    color: var(--gold);
+    font-family: 'Nanum Myeongjo', serif;
+    margin-right: 6px;
+  }
+  .preview-tag {
+    display: inline-block;
+    background: rgba(160, 96, 200, 0.18);
+    color: var(--purple-glow);
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    padding: 3px 8px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .preview-body {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.95;
+    color: var(--paper);
+  }
+  .preview-blur {
+    filter: blur(5px);
+    user-select: none;
+    color: var(--paper-soft);
+  }
+
+  /* ━━━━━━━━━━ COUNTDOWN ━━━━━━━━━━ */
+  .countdown {
+    margin: 32px 0 0;
+    padding: 18px 20px;
+    background: linear-gradient(90deg, var(--purple-deep) 0%, var(--purple) 50%, var(--purple-deep) 100%);
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .countdown::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.15), transparent);
+    animation: shine-slide 3s infinite;
+  }
+  @keyframes shine-slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .countdown-label {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #f4d878;
+    margin-bottom: 8px;
+    text-shadow: 0 0 12px rgba(244, 216, 120, 0.5);
+  }
+  .countdown-title {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700; font-size: 16px;
+    color: var(--paper); margin-bottom: 12px;
+    position: relative; z-index: 2;
+    letter-spacing: -0.3px;
+  }
+  .countdown-title strong { color: var(--gold); }
+  .countdown-time {
+    display: flex; justify-content: center; gap: 8px;
+    position: relative; z-index: 2;
+  }
+  .cd-block {
+    background: rgba(10, 6, 8, 0.6);
+    border: 1px solid rgba(212, 168, 87, 0.4);
+    padding: 8px 0;
+    min-width: 56px;
+  }
+  .cd-num {
+    font-family: 'Cinzel', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--paper); letter-spacing: 1px;
+    line-height: 1;
+  }
+  .cd-label {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 10px; color: #f4d878;
+    letter-spacing: 1px; margin-top: 4px;
+  }
+
+  /* ━━━━━━━━━━ PRICE & CTA ━━━━━━━━━━ */
+  .price-section {
+    padding: 32px 20px 24px;
+    background: linear-gradient(180deg, transparent, rgba(160, 96, 200, 0.08));
+  }
+  .price-box {
+    background: linear-gradient(180deg, var(--purple-deep) 0%, #2a1438 100%);
+    border: 2px solid var(--gold);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .price-product-name {
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--paper);
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .price-product-desc {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+  .price-old {
+    color: var(--paper-soft);
+    text-decoration: line-through;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .price-discount {
+    display: inline-block;
+    background: var(--hot);
+    color: var(--paper);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .price-now {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    color: var(--paper);
+    letter-spacing: -1px;
+  }
+  .price-now .unit { font-size: 22px; color: var(--gold); margin-left: 4px; }
+  .main-cta {
+    display: block;
+    margin-top: 22px;
+    width: 100%;
+    padding: 20px 24px;
+    background: linear-gradient(180deg, var(--purple-glow) 0%, var(--purple) 100%);
+    color: var(--paper);
+    border: 1px solid var(--gold);
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    box-shadow:
+      0 6px 24px rgba(160, 96, 200, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .main-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    animation: shine-cta 2.5s infinite;
+  }
+  @keyframes shine-cta {
+    50%, 100% { transform: translateX(100%); }
+  }
+
+  /* ━━━━━━━━━━ EMPATHY (공감 후킹) ━━━━━━━━━━ */
+  .empathy-section {
+    padding: 40px 22px 32px;
+    background: linear-gradient(180deg, transparent, rgba(74, 40, 88, 0.15), transparent);
+    border-top: 1px solid rgba(212, 168, 87, 0.15);
+    border-bottom: 1px solid rgba(212, 168, 87, 0.15);
+  }
+  .empathy-bubble {
+    background: linear-gradient(135deg, rgba(245, 237, 224, 0.07), rgba(160, 96, 200, 0.05));
+    border: 1px solid rgba(212, 168, 87, 0.25);
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--paper);
+    border-radius: 16px 16px 16px 4px;
+    max-width: 90%;
+    letter-spacing: -0.3px;
+  }
+  .empathy-bubble strong { color: var(--purple-glow); font-weight: 700; }
+  .empathy-bubble.right {
+    margin-left: auto;
+    border-radius: 16px 16px 4px 16px;
+    background: linear-gradient(135deg, rgba(160, 96, 200, 0.18), rgba(74, 40, 88, 0.12));
+  }
+
+  /* ━━━━━━━━━━ TESTIMONIALS (후기) ━━━━━━━━━━ */
+  .testimonials-section {
+    padding: 40px 22px 32px;
+  }
+  .testimonial-card {
+    background: linear-gradient(135deg, rgba(245, 237, 224, 0.04), rgba(160, 96, 200, 0.03));
+    border: 1px solid rgba(212, 168, 87, 0.2);
+    padding: 20px 18px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 0; left: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 56px;
+    color: rgba(212, 168, 87, 0.3);
+    line-height: 1;
+  }
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .testimonial-body {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--paper);
+    margin-bottom: 12px;
+    letter-spacing: -0.2px;
+    padding-left: 8px;
+  }
+  .testimonial-body strong {
+    color: var(--purple-glow);
+    font-weight: 700;
+    background: rgba(160, 96, 200, 0.08);
+    padding: 1px 4px;
+  }
+  .testimonial-author {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 12px;
+    color: var(--paper-soft);
+    font-weight: 600;
+    border-top: 1px dashed rgba(212, 168, 87, 0.2);
+    padding-top: 10px;
+  }
+  .testimonial-author strong { color: var(--gold); }
+
+  /* ━━━━━━━━━━ COMPARISON TABLE ━━━━━━━━━━ */
+  .comparison-section {
+    padding: 32px 18px 24px;
+  }
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Pretendard', sans-serif;
+    border: 1px solid var(--gold);
+    background: linear-gradient(180deg, rgba(74, 40, 88, 0.12), transparent);
+  }
+  .comp-table th, .comp-table td {
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 12.5px;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.18);
+  }
+  .comp-table th {
+    background: rgba(74, 40, 88, 0.4);
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .comp-table th.us {
+    background: linear-gradient(180deg, var(--purple), var(--purple-deep));
+    color: var(--paper);
+    font-size: 13px;
+  }
+  .comp-table td {
+    color: var(--paper-dim);
+  }
+  .comp-table td.us {
+    color: var(--paper);
+    font-weight: 700;
+    background: rgba(160, 96, 200, 0.1);
+  }
+  .comp-table td.us strong { color: var(--gold); }
+  .comp-table .check {
+    color: var(--purple-glow);
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .comp-table .x {
+    color: var(--paper-soft);
+    font-size: 14px;
+  }
+
+  /* ━━━━━━━━━━ FAQ ━━━━━━━━━━ */
+  .faq-item {
+    border-bottom: 1px solid rgba(212, 168, 87, 0.2);
+  }
+  .faq-q {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--paper);
+    text-align: left;
+    padding: 18px 0;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .faq-q .q-mark {
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .faq-q .arrow {
+    margin-left: auto;
+    color: var(--paper-soft);
+    transition: transform 0.3s ease;
+  }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--paper);
+    padding-left: 28px;
+  }
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding-bottom: 18px;
+  }
+
+  /* ━━━━━━━━━━ FINAL CTA ━━━━━━━━━━ */
+  .final-character {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--ink) 0%, #2a1438 50%, var(--ink) 100%);
+  }
+  .final-character img { width: 100%; height: 100%; object-fit: cover; }
+  .final-character-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(10,6,8,0.85) 85%);
+  }
+  .final-character-text {
+    position: absolute; bottom: 32px; left: 0; right: 0;
+    text-align: center;
+    padding: 0 28px;
+  }
+  .final-character-text .ko {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--paper);
+    line-height: 1.35;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.9);
+    letter-spacing: -0.8px;
+  }
+  .final-character-text .ko .accent { color: var(--purple-glow); }
+
+  /* ━━━━━━━━━━ STICKY FOOTER ━━━━━━━━━━ */
+  .sticky-footer {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent, var(--ink) 30%);
+    padding: 14px 14px 18px;
+    z-index: 30;
+    backdrop-filter: blur(8px);
+  }
+  .sticky-footer-inner {
+    background: linear-gradient(180deg, var(--purple-deep), #2a1438);
+    border: 1px solid var(--gold);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sf-price { flex-shrink: 0; }
+  .sf-old {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 10px;
+    color: var(--paper-soft);
+    text-decoration: line-through;
+  }
+  .sf-now {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+  }
+  .sf-btn {
+    flex: 1;
+    background: linear-gradient(180deg, var(--purple-glow), var(--purple));
+    color: var(--paper);
+    border: 1px solid var(--gold);
+    padding: 12px 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  /* Loading initial state */
+  .loading-init {
+    text-align: center;
+    padding: 80px 24px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .loading-init.hidden { display: none; }
+  .loading-mark {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(160, 96, 200, 0.6);
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  .loading-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .loading-step {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--paper-dim);
+    min-height: 20px;
+  }
+
+  .content {
+    display: none;
+  }
+  .content.shown {
+    display: block;
+    animation: fade-in 0.6s ease;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Footer */
+  .doc-footer {
+    padding: 32px 20px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 168, 87, 0.15);
+    margin-bottom: 80px;
+  }
+  .doc-footer-mark {
+    color: var(--gold);
+    font-family: 'Pretendard', 'Nanum Myeongjo', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .doc-footer-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--paper-dim);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="device">
+
+  <div class="topbar">
+    <a href="form-1.html" class="back-btn">‹</a>
+    <div class="top-title"><strong>자운당</strong> 무료 사주 분석</div>
+  </div>
+
+  <!-- ━━━━━━━━━━ INITIAL LOADING ━━━━━━━━━━ -->
+  <div class="loading-init" id="loadingInit">
+    <div class="loading-mark">紫</div>
+    <div class="loading-text">자운당이 풀어드리고 있어요</div>
+    <div class="loading-step" id="loadingStep">사주팔자를 펼치는 중…</div>
+  </div>
+
+  <!-- ━━━━━━━━━━ MAIN CONTENT ━━━━━━━━━━ -->
+  <div class="content" id="content">
+
+    <!-- ━━━━━━━━━━ HERO INTRO (자운 아씨 인사 컷) ━━━━━━━━━━ -->
+    <section class="hero-intro">
+      <img src="assets/character-greeting.jpg" alt="자운 아씨" onerror="this.style.display='none';">
+      <div class="hero-intro-overlay"></div>
+      <div class="hero-intro-text">
+        <div style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 12px; color: var(--gold); letter-spacing: 4px; margin-bottom: 8px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">◆ 자운 아씨 정통사주 ◆</div>
+        <div class="hero-intro-name">
+          <span id="userName">자운</span>님,<br>
+          <span class="accent">잘 오셨습니다</span>
+        </div>
+        <div class="hero-intro-meta" id="userMeta">— 1990년 1월 1일 양력 ·  여성 —</div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ BUBBLES ━━━━━━━━━━ -->
+    <section class="bubble-section">
+      <div class="bubble">
+        그대의 사주, <strong>잘 받았습니다.</strong><br>
+        지금부터 가볍게 한번 짚어드릴게요.
+      </div>
+      <div class="bubble">
+        먼저, 그대의 <strong>사주팔자</strong>부터 펼쳐보겠습니다.
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ TRUST NUMBERS ━━━━━━━━━━ -->
+    <section style="padding: 8px 16px 16px;">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); background: linear-gradient(135deg, rgba(74, 40, 88, 0.4), rgba(109, 58, 138, 0.2)); border: 1px solid rgba(212, 168, 87, 0.3); padding: 24px 16px; text-align: center;">
+        <div>
+          <div style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 28px; color: var(--gold); letter-spacing: -1px;">12<span style="font-size: 14px; color: var(--paper-dim); margin-left: 2px; font-weight: 600;">년</span></div>
+          <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: var(--paper-dim); margin-top: 6px; letter-spacing: 1px; font-weight: 600;">신당 운영</div>
+        </div>
+        <div style="border-left: 1px solid rgba(212, 168, 87, 0.2); border-right: 1px solid rgba(212, 168, 87, 0.2);">
+          <div style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 28px; color: var(--gold); letter-spacing: -1px;">3,800<span style="font-size: 14px; color: var(--paper-dim); margin-left: 2px; font-weight: 600;">+</span></div>
+          <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: var(--paper-dim); margin-top: 6px; letter-spacing: 1px; font-weight: 600;">상담 누적</div>
+        </div>
+        <div>
+          <div style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 28px; color: var(--gold); letter-spacing: -1px;">98<span style="font-size: 14px; color: var(--paper-dim); margin-left: 2px; font-weight: 600;">%</span></div>
+          <div style="font-family: 'Pretendard', sans-serif; font-size: 11px; color: var(--paper-dim); margin-top: 6px; letter-spacing: 1px; font-weight: 600;">재방문률</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ SAJU PILLARS ━━━━━━━━━━ -->
+    <section class="section">
+      <div class="section-eyebrow">사주팔자</div>
+      <h2 class="section-title">
+        그대의 <span class="accent">팔자</span>를<br>
+        펼쳐드립니다
+      </h2>
+
+      <div class="pillars" id="pillars">
+        <div class="pillar">
+          <div class="pillar-label">시 주</div>
+          <div class="pillar-chars">
+            <div class="pillar-heaven" id="p-h-time">?</div>
+            <div class="pillar-earth" id="p-e-time">?</div>
+          </div>
+          <div class="pillar-meaning">자녀·말년</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">일 주</div>
+          <div class="pillar-chars">
+            <div class="pillar-heaven" id="p-h-day">?</div>
+            <div class="pillar-earth" id="p-e-day">?</div>
+          </div>
+          <div class="pillar-meaning">나·배우자</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">월 주</div>
+          <div class="pillar-chars">
+            <div class="pillar-heaven" id="p-h-month">?</div>
+            <div class="pillar-earth" id="p-e-month">?</div>
+          </div>
+          <div class="pillar-meaning">부모·청년</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">연 주</div>
+          <div class="pillar-chars">
+            <div class="pillar-heaven" id="p-h-year">?</div>
+            <div class="pillar-earth" id="p-e-year">?</div>
+          </div>
+          <div class="pillar-meaning">조상·유년</div>
+        </div>
+      </div>
+
+      <!-- 일주 -->
+      <div class="day-master">
+        <div class="day-master-label">◆ 그대의 일주 ◆</div>
+        <div class="day-master-title" id="dayMasterTitle">
+          <span class="accent">?</span>일주
+        </div>
+        <div class="day-master-summary" id="dayMasterSummary">…</div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ FIVE ELEMENTS ━━━━━━━━━━ -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-eyebrow">오행의 균형</div>
+      <h2 class="section-title">
+        그대 안의<br>
+        <span class="accent">다섯 기운</span>
+      </h2>
+
+      <div class="elements-chart">
+        <div class="elements-bars" id="elementsBars">
+          <div class="element" data-elem="wood">
+            <div class="element-bar-wrap"><div class="element-bar" style="height: 0%"></div></div>
+            <div class="element-name">木</div>
+            <div class="element-count">- 개</div>
+          </div>
+          <div class="element" data-elem="fire">
+            <div class="element-bar-wrap"><div class="element-bar" style="height: 0%"></div></div>
+            <div class="element-name">火</div>
+            <div class="element-count">- 개</div>
+          </div>
+          <div class="element" data-elem="earth">
+            <div class="element-bar-wrap"><div class="element-bar" style="height: 0%"></div></div>
+            <div class="element-name">土</div>
+            <div class="element-count">- 개</div>
+          </div>
+          <div class="element" data-elem="metal">
+            <div class="element-bar-wrap"><div class="element-bar" style="height: 0%"></div></div>
+            <div class="element-name">金</div>
+            <div class="element-count">- 개</div>
+          </div>
+          <div class="element" data-elem="water">
+            <div class="element-bar-wrap"><div class="element-bar" style="height: 0%"></div></div>
+            <div class="element-name">水</div>
+            <div class="element-count">- 개</div>
+          </div>
+        </div>
+        <div class="elements-summary" id="elementsSummary">…</div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ ADDITIONAL FREE READINGS (5개 섹션) ━━━━━━━━━━ -->
+    <section class="section" style="padding-top: 16px;">
+      <!-- 성격·기질 -->
+      <div class="reading-card">
+        <div class="reading-card-tag">자리 1 · 성격</div>
+        <h3 class="reading-card-title"><span class="ch">性</span>그대의 두 결</h3>
+        <div class="reading-card-body" id="personalityText">…</div>
+      </div>
+
+      <!-- 인연 (브리프) -->
+      <div class="reading-card">
+        <div class="reading-card-tag">자리 2 · 인연</div>
+        <h3 class="reading-card-title"><span class="ch">緣</span>인연의 흐름</h3>
+        <div class="reading-card-body" id="loveBriefText">…</div>
+      </div>
+
+      <!-- 일·재물 (브리프) -->
+      <div class="reading-card">
+        <div class="reading-card-tag">자리 3 · 일·재물</div>
+        <h3 class="reading-card-title"><span class="ch">財</span>일과 재물의 자리</h3>
+        <div class="reading-card-body" id="workBriefText">…</div>
+      </div>
+
+      <!-- 올해 흐름 -->
+      <div class="reading-card highlight">
+        <div class="reading-card-tag" style="color: #f4d878;">올해 흐름</div>
+        <h3 class="reading-card-title"><span class="ch">運</span>올해, 그대의 자리</h3>
+        <div class="reading-card-body" id="thisYearText">…</div>
+      </div>
+
+      <!-- 조심할 자리 -->
+      <div class="reading-card warning">
+        <div class="reading-card-tag" style="color: #ff8090;">조심할 자리</div>
+        <h3 class="reading-card-title"><span class="ch">愼</span>한 가지만 미리</h3>
+        <div class="reading-card-body" id="warningText">…</div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ MID CHARACTER (안내 컷) ━━━━━━━━━━ -->
+    <section class="mid-character">
+      <img src="assets/character-pointing.jpg" alt="자운 아씨" onerror="this.style.display='none';">
+      <div class="mid-character-overlay"></div>
+      <div class="mid-character-text">
+        <div class="ko">
+          여기까지가 <span class="accent">맛보기</span>예요.<br>
+          진짜는 지금부터예요.
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ BUBBLES 2 ━━━━━━━━━━ -->
+    <section class="bubble-section">
+      <div class="bubble">
+        그대의 사주, 솔직히 좀 <strong>흥미롭네요.</strong><br>
+        몇 군데 짚어드릴 자리가 있는데…
+      </div>
+      <div class="bubble">
+        무료로는 <strong>여기까지만</strong> 보여드릴 수 있어요.<br>
+        전체 풀이는 <strong>전 8장</strong>으로 자세히 적어드립니다.
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ PREVIEW LOCKED CONTENT ━━━━━━━━━━ -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-eyebrow">전체 풀이 미리보기</div>
+      <h2 class="section-title">
+        잠긴 8장,<br>
+        <span class="accent">결제하면 풀려요</span>
+      </h2>
+
+      <!-- Preview 1: 타고난 기운 (살짝 보임) -->
+      <div class="preview-block">
+        <h3 class="preview-h"><span class="ch">命</span>1장. 타고난 기운</h3>
+        <span class="preview-tag">FREE 일부 공개</span>
+        <div class="preview-body" id="preview1">…</div>
+      </div>
+
+      <!-- Preview 2-8: 잠금 -->
+      <div class="preview-block locked">
+        <h3 class="preview-h"><span class="ch">緣</span>2장. 애정·인연의 흐름</h3>
+        <span class="preview-tag" style="background:rgba(232, 72, 88, 0.15); color: #ff8090;">🔒 결제 후 공개</span>
+        <div class="preview-body preview-blur">
+          그대의 인연 자리를 보면 <strong>특이한 흐름</strong>이 있어요. 지금 마음에 걸리는 그 분, 단순한 인연이 아니에요. 이 자리는 ████████████████ 시기에 ███████████████ 흐름으로 풀려요. 다만 ████████████ 자리를 조심하셔야...
+        </div>
+        <div class="lock-overlay">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-text">결제 후 전체 공개</div>
+        </div>
+      </div>
+
+      <div class="preview-block locked">
+        <h3 class="preview-h"><span class="ch">財</span>3장. 재물·일의 길</h3>
+        <span class="preview-tag" style="background:rgba(232, 72, 88, 0.15); color: #ff8090;">🔒 결제 후 공개</span>
+        <div class="preview-body preview-blur">
+          재물의 자리는 의외로 <strong>밝게 흐르고</strong> 있어요. 다만 ███████████ 시기에 ███████████ 자리가 막히는데, 그 자리만 잘 풀면...
+        </div>
+        <div class="lock-overlay">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-text">결제 후 전체 공개</div>
+        </div>
+      </div>
+
+      <div class="preview-block locked">
+        <h3 class="preview-h"><span class="ch">運</span>4장. 올해의 운세 (12개월)</h3>
+        <span class="preview-tag" style="background:rgba(232, 72, 88, 0.15); color: #ff8090;">🔒 결제 후 공개</span>
+        <div class="preview-body preview-blur">
+          올해 그대의 흐름은 ███████████████ 자리에서 시작해서 ████████████ 자리로 풀려요. 특히 ███월에...
+        </div>
+        <div class="lock-overlay">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-text">결제 후 전체 공개</div>
+        </div>
+      </div>
+
+      <div class="preview-block locked" style="opacity: 0.5;">
+        <h3 class="preview-h" style="font-size:14px;"><span class="ch">健</span>5장. 건강·기운 + 6장 대운(10년 단위) + 7장 친구·인간관계 + 8장. 자운 아씨 코멘트</h3>
+        <span class="preview-tag" style="background:rgba(232, 72, 88, 0.15); color: #ff8090;">🔒 결제 후 공개</span>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ COUNTDOWN ━━━━━━━━━━ -->
+    <section class="countdown">
+      <div class="countdown-label">⚡ 종명기일 한정 ⚡</div>
+      <div class="countdown-title">이달 풀이는 <strong>아래 시간까지만</strong> 가능해요</div>
+      <div class="countdown-time">
+        <div class="cd-block">
+          <div class="cd-num" id="cd-d">--</div>
+          <div class="cd-label">DAYS</div>
+        </div>
+        <div class="cd-block">
+          <div class="cd-num" id="cd-h">--</div>
+          <div class="cd-label">HOURS</div>
+        </div>
+        <div class="cd-block">
+          <div class="cd-num" id="cd-m">--</div>
+          <div class="cd-label">MINS</div>
+        </div>
+        <div class="cd-block">
+          <div class="cd-num" id="cd-s">--</div>
+          <div class="cd-label">SECS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ EMPATHY (공감 후킹) ━━━━━━━━━━ -->
+    <section class="empathy-section">
+      <div class="section-eyebrow">혹시 이런 마음</div>
+      <h2 class="section-title">
+        <span class="accent">이런 자리</span>에<br>
+        머물러 계신가요?
+      </h2>
+
+      <div style="margin-top: 24px;">
+        <div class="empathy-bubble">
+          그 사람이 자꾸 마음에 걸려요.<br><strong>운명일까요, 우연일까요…</strong>
+        </div>
+        <div class="empathy-bubble right">
+          요즘 일이 풀리지 않아요.<br><strong>지금 시기가 맞는 건지</strong> 모르겠고요.
+        </div>
+        <div class="empathy-bubble">
+          큰 결정을 앞두고 있는데,<br><strong>혼자 곱씹어 봤자</strong> 답이 안 나와요.
+        </div>
+        <div class="empathy-bubble right">
+          누구한테도 못 말한 자리가 있어요.<br><strong>마음만 무겁고…</strong>
+        </div>
+        <div class="empathy-bubble">
+          앞으로 어디로 가야 할지<br><strong>방향을 잡고 싶어요.</strong>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px; text-align: center;">
+        <p style="font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 16px; color: var(--paper); line-height: 1.7; letter-spacing: -0.4px;">
+          그 자리,<br>
+          <span style="color: var(--purple-glow);">자운당이 짚어드리겠습니다.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ PRICE BOX ━━━━━━━━━━ -->
+    <section class="price-section">
+      <div class="price-box">
+        <div class="price-product-name" id="priceProductName">자운 아씨 정통사주</div>
+        <div class="price-product-desc">전 8장 · 자운 아씨 직접 짚어드림</div>
+        <div class="price-old">정상가 49,000원</div>
+        <div class="price-discount">59% OFF</div>
+        <div class="price-now">19,900<span class="unit">원</span></div>
+        <a href="#" class="main-cta" id="mainCTA">전체 풀이 받기 →</a>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ TESTIMONIALS (후기) ━━━━━━━━━━ -->
+    <section class="testimonials-section">
+      <div class="section-eyebrow">받으신 분들의 자리</div>
+      <h2 class="section-title">
+        <span class="accent">3,800명</span>이<br>
+        받으셨습니다
+      </h2>
+
+      <div style="margin-top: 24px;">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+          <div class="testimonial-body">
+            "그 사람과의 인연이 끝난 줄 알았는데, <strong>자운 아씨가 짚어주신 자리</strong>가 정말 그대로 와서 놀랐어요. 뭐랄까… 마음이 정리되는 풀이였달까."
+          </div>
+          <div class="testimonial-author">— <strong>30대 여성</strong> · 인연 풀이 후기</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+          <div class="testimonial-body">
+            "이직을 두고 고민하고 있었는데, <strong>막힌 자리와 풀릴 시기</strong>를 정확히 짚어주셨어요. 그 시기에 맞춰 움직이니 정말 일이 술술 풀렸습니다."
+          </div>
+          <div class="testimonial-author">— <strong>40대 남성</strong> · 일·진로 풀이 후기</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+          <div class="testimonial-body">
+            "다른 사주 앱은 그냥 일반론이었는데, <strong>자운당은 제 자리만의 흐름</strong>을 알려주셨어요. 8장 풀이가 한 편의 편지 같았어요."
+          </div>
+          <div class="testimonial-author">— <strong>20대 여성</strong> · 전반 풀이 후기</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+          <div class="testimonial-body">
+            "솔직히 처음엔 반신반의했어요. 근데 <strong>대운 흐름까지 짚어주시는데</strong>… 지난 10년을 돌아보니 그대로였더라고요. 다음 10년이 기대됩니다."
+          </div>
+          <div class="testimonial-author">— <strong>50대 여성</strong> · 대운 풀이 후기</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+          <div class="testimonial-body">
+            "혼자 곱씹어 보던 자리를 적어서 보냈는데, <strong>정말 따뜻하게 답해주셨어요.</strong> 풀이지를 받고 한참을 다시 읽었어요. 혼자가 아닌 기분."
+          </div>
+          <div class="testimonial-author">— <strong>30대 여성</strong> · 자유 입력 후기</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ COMPARISON TABLE ━━━━━━━━━━ -->
+    <section class="comparison-section">
+      <div class="section-eyebrow">왜 자운당인가</div>
+      <h2 class="section-title">
+        <span class="accent">12년 신당</span>이<br>
+        직접 짚어드립니다
+      </h2>
+
+      <table class="comp-table" style="margin-top: 24px;">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="us">자운당</th>
+            <th>일반 사주앱</th>
+            <th>점집 방문</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: left; padding-left: 12px; font-weight: 700; color: var(--paper);">정통성</td>
+            <td class="us"><strong>실 신당<br>12년 운영</strong></td>
+            <td><span class="x">AI/일반론</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td style="text-align: left; padding-left: 12px; font-weight: 700; color: var(--paper);">개인화</td>
+            <td class="us"><strong>5가지<br>맞춤 질문</strong></td>
+            <td>생년월일만</td>
+            <td>대화 가능</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; padding-left: 12px; font-weight: 700; color: var(--paper);">결과 분량</td>
+            <td class="us"><strong>전 8장<br>상세 풀이</strong></td>
+            <td>짧은 한 페이지</td>
+            <td>30~60분 대화</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; padding-left: 12px; font-weight: 700; color: var(--paper);">사후 상담</td>
+            <td class="us"><strong>1:1 카톡<br>(무료)</strong></td>
+            <td><span class="x">없음</span></td>
+            <td>유료 추가</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; padding-left: 12px; font-weight: 700; color: var(--paper);">가격</td>
+            <td class="us"><strong>19,900원</strong></td>
+            <td>3~10만원</td>
+            <td>5~30만원</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; padding-left: 12px; font-weight: 700; color: var(--paper);">소요 시간</td>
+            <td class="us"><strong>3~5분</strong></td>
+            <td>즉시</td>
+            <td>1~2시간</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; padding: 16px 18px; background: rgba(160, 96, 200, 0.08); border-left: 3px solid var(--purple-glow);">
+        <p style="font-family: 'Pretendard', sans-serif; font-weight: 600; font-size: 14px; color: var(--paper); line-height: 1.7; letter-spacing: -0.3px;">
+          자운당은 <strong style="color: var(--gold);">실 신당의 12년 풀이 노하우</strong>와<br>
+          AI의 개인화 정밀도를 결합한 <strong style="color: var(--purple-glow);">정통 사주 풀이 서비스</strong>입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ FAQ ━━━━━━━━━━ -->
+    <section class="section">
+      <div class="section-eyebrow">자주 묻는 질문</div>
+      <h2 class="section-title">
+        혹시,<br>
+        <span class="accent">이런 게</span> 궁금하시나요?
+      </h2>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="q-mark">Q.</span>
+          <span>결제하면 결과는 언제 받아요?</span>
+          <span class="arrow">⌄</span>
+        </button>
+        <div class="faq-a">결제 완료 후 약 3~5분 이내에 화면에서 바로 확인하실 수 있어요. 결과지는 PDF로도 발송되며, 카톡 채널에 친구추가 하시면 그쪽으로도 보내드립니다.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="q-mark">Q.</span>
+          <span>1:1 카톡 상담은 어떻게 받나요?</span>
+          <span class="arrow">⌄</span>
+        </button>
+        <div class="faq-a">결과지 받으신 후 마음에 걸리는 자리가 있으시면 카톡 채널로 메시지 남겨주세요. 자운 아씨가 직접 답변드립니다. (별도 비용 없음)</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="q-mark">Q.</span>
+          <span>환불이 되나요?</span>
+          <span class="arrow">⌄</span>
+        </button>
+        <div class="faq-a">결과지를 아직 받지 않으셨다면 100% 환불 가능합니다. 결과지를 받으신 후에는 디지털 콘텐츠 특성상 환불이 어려워요.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="q-mark">Q.</span>
+          <span>왜 종명기일까지만 이 가격인가요?</span>
+          <span class="arrow">⌄</span>
+        </button>
+        <div class="faq-a">자운당은 매월 종명기일에 신당의 기운을 정리하고 새달의 풀이를 준비합니다. 그 시기까지만 이 가격으로 풀이를 열어두며, 다음 달엔 정상가로 운영됩니다.</div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ FINAL CHARACTER (감사 컷) ━━━━━━━━━━ -->
+    <section class="final-character">
+      <img src="assets/character-prayer.jpg" alt="자운 아씨" onerror="this.style.display='none';">
+      <div class="final-character-overlay"></div>
+      <div class="final-character-text">
+        <div class="ko">
+          그 자리에,<br>
+          <span class="accent">자운당이 있겠습니다</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━ FINAL PRICE ━━━━━━━━━━ -->
+    <section class="price-section">
+      <div class="price-box">
+        <div class="price-product-name">자운 아씨 정통사주</div>
+        <div class="price-product-desc">8장의 정통 풀이</div>
+        <div class="price-old">정상가 49,000원</div>
+        <div class="price-discount">종명기일 한정 59% OFF</div>
+        <div class="price-now">19,900<span class="unit">원</span></div>
+        <a href="#" class="main-cta">전체 풀이 받기 →</a>
+      </div>
+    </section>
+
+    <footer class="doc-footer">
+      <div class="doc-footer-mark">◆ 紫 雲 堂 ◆</div>
+      <div class="doc-footer-text">
+        © 자운당 · 부산광역시<br>
+        개인정보 처리방침 · 이용약관 · 고객센터<br>
+        대표 카톡채널 @자운당
+      </div>
+    </footer>
+
+  </div>
+
+
+</div>
+
+<script>
+  // ─────────────────────────────────────────────
+  // SAJU 계산 (form.html에서 입력받은 데이터)
+  // ─────────────────────────────────────────────
+  const HEAVENLY_STEMS_HJ = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+  const HEAVENLY_STEMS_KR = ['갑','을','병','정','무','기','경','신','임','계'];
+  const EARTHLY_BRANCHES_HJ = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+  const EARTHLY_BRANCHES_KR = ['자','축','인','묘','진','사','오','미','신','유','술','해'];
+  const STEM_ELEM = [0,0,1,1,2,2,3,3,4,4]; // 목화토금수
+  const BRANCH_ELEM = [4,2,0,0,2,1,1,2,3,3,2,4];
+
+  function calculateSaju(year, month, day, branch) {
+    const y = parseInt(year);
+    const yStemIdx = ((y - 4) % 10 + 10) % 10;
+    const yBranchIdx = ((y - 4) % 12 + 12) % 12;
+
+    const m = parseInt(month);
+    const monthBranchMap = [2,3,4,5,6,7,8,9,10,11,0,1];
+    const mBranchIdx = monthBranchMap[m - 1];
+    const yearStemBase = [0,2,4,6,8,0,2,4,6,8];
+    const mStemIdx = (yearStemBase[yStemIdx] + m - 1) % 10;
+
+    const baseDate = new Date(1900, 0, 1);
+    const targetDate = new Date(y, m - 1, parseInt(day));
+    const daysDiff = Math.floor((targetDate - baseDate) / 86400000);
+    const dayStemIdx = ((daysDiff + 10) % 10 + 10) % 10;
+    const dayBranchIdx = ((daysDiff + 12) % 12 + 12) % 12;
+
+    let timeBranchIdx = -1;
+    let timeStemIdx = -1;
+    if (branch && branch !== 'unknown') {
+      timeBranchIdx = EARTHLY_BRANCHES_HJ.indexOf(branch);
+      const dayStemBase = [0,2,4,6,8,0,2,4,6,8];
+      timeStemIdx = (dayStemBase[dayStemIdx] + timeBranchIdx) % 10;
+    }
+
+    return {
+      year: { stem: yStemIdx, branch: yBranchIdx },
+      month: { stem: mStemIdx, branch: mBranchIdx },
+      day: { stem: dayStemIdx, branch: dayBranchIdx },
+      time: timeBranchIdx >= 0 ? { stem: timeStemIdx, branch: timeBranchIdx } : null
+    };
+  }
+
+  function countElements(saju) {
+    const counts = [0, 0, 0, 0, 0];
+    counts[STEM_ELEM[saju.year.stem]]++;
+    counts[BRANCH_ELEM[saju.year.branch]]++;
+    counts[STEM_ELEM[saju.month.stem]]++;
+    counts[BRANCH_ELEM[saju.month.branch]]++;
+    counts[STEM_ELEM[saju.day.stem]]++;
+    counts[BRANCH_ELEM[saju.day.branch]]++;
+    if (saju.time) {
+      counts[STEM_ELEM[saju.time.stem]]++;
+      counts[BRANCH_ELEM[saju.time.branch]]++;
+    }
+    return counts;
+  }
+
+  // ─────────────────────────────────────────────
+  // LOAD INPUT
+  // ─────────────────────────────────────────────
+  const input = JSON.parse(sessionStorage.getItem('saju_input') || '{}');
+
+  // 입력 없으면 form.html로 보내기 (또는 기본값으로 데모)
+  if (!input.name) {
+    // 데모 모드 — 기본값으로 미리보기
+    Object.assign(input, {
+      name: '자운',
+      calendar: 'solar',
+      year: '1990', month: '1', day: '1',
+      time: '午',
+      gender: 'female'
+    });
+  }
+
+  document.getElementById('userName').textContent = input.name;
+  const calLabel = input.calendar === 'lunar' ? '음력' : '양력';
+  const genderLabel = input.gender === 'male' ? '남성' : '여성';
+  document.getElementById('userMeta').textContent =
+    `— ${input.year}년 ${input.month}월 ${input.day}일 (${calLabel}) · ${genderLabel} —`;
+
+  // ─────────────────────────────────────────────
+  // CALCULATE & FILL PILLARS
+  // ─────────────────────────────────────────────
+  const saju = calculateSaju(input.year, input.month, input.day, input.time);
+
+  function pillarText(p) {
+    if (!p) return { stem: '?', branch: '?' };
+    return {
+      stem: HEAVENLY_STEMS_HJ[p.stem],
+      branch: EARTHLY_BRANCHES_HJ[p.branch],
+      stemKr: HEAVENLY_STEMS_KR[p.stem],
+      branchKr: EARTHLY_BRANCHES_KR[p.branch]
+    };
+  }
+
+  const yearP = pillarText(saju.year);
+  const monthP = pillarText(saju.month);
+  const dayP = pillarText(saju.day);
+  const timeP = pillarText(saju.time);
+
+  // 일주
+  const dayMasterName = dayP.stemKr + dayP.branchKr;
+  document.getElementById('dayMasterTitle').innerHTML = `<span class="accent">${dayMasterName}</span>일주`;
+
+  // ─────────────────────────────────────────────
+  // CLAUDE API 호출 (무료 풀이 생성)
+  // ─────────────────────────────────────────────
+  const elementCounts = countElements(saju);
+  const elemKeys = ['wood','fire','earth','metal','water'];
+  const elemNames = ['木 목','火 화','土 토','金 금','水 수'];
+
+  const sajuSummary = `
+이름: ${input.name}
+성별: ${input.gender === 'male' ? '남성' : '여성'}
+생년월일: ${input.year}년 ${input.month}월 ${input.day}일 (${input.calendar === 'lunar' ? '음력' : '양력'})
+태어난 시: ${input.time === 'unknown' ? '모름' : input.time + '시'}
+
+사주팔자:
+- 연주: ${yearP.stemKr}${yearP.branchKr} (${yearP.stem}${yearP.branch})
+- 월주: ${monthP.stemKr}${monthP.branchKr} (${monthP.stem}${monthP.branch})
+- 일주: ${dayP.stemKr}${dayP.branchKr} (${dayP.stem}${dayP.branch}) ← 일간
+- 시주: ${input.time === 'unknown' ? '모름' : timeP.stemKr + timeP.branchKr}
+
+오행 분포 (총 ${input.time === 'unknown' ? 6 : 8}자):
+木 목: ${elementCounts[0]}, 火 화: ${elementCounts[1]}, 土 토: ${elementCounts[2]}, 金 금: ${elementCounts[3]}, 水 수: ${elementCounts[4]}
+`;
+
+  const prompt = `당신은 12년 경력의 신당 무속인 "자운 아씨"입니다. 따뜻하고 신비로운 어조로, 그러나 확정 예언이나 공포 조장은 절대 하지 않습니다.
+
+다음 사주를 보고 무료 미리보기 풀이를 작성해주세요:
+
+${sajuSummary}
+
+3개 짧은 단락을 작성해주세요. 각 단락은 정확히 2-3문장의 시적이고 따뜻한 무속 톤. "~한 기운이 흐르고 있어요", "~할 시기가 다가오고 있어요" 같은 분위기 화법.
+
+반드시 아래 JSON 형식으로만 응답하세요. 마크다운 백틱 없이 순수 JSON만:
+
+{
+  "dayMasterSummary": "일주(${dayMasterName})에 대한 풀이 — 그대가 어떤 자리에 있는 사람인지 (3-4문장)",
+  "elementsSummary": "오행 분포 풀이 — 가장 많은 기운, 가장 적은 기운, 그것이 어떻게 흐르는지 (3-4문장)",
+  "personality": "성격·기질의 자리 — 그대 안에 있는 두 가지 결, 어떻게 어울리는지 (3-4문장)",
+  "loveBrief": "인연의 자리 — 무료 미리보기 (2-3문장은 명확, 마지막 ████ 처리). 올해 또는 가까운 시기 한 마디 (3-4문장)",
+  "workBrief": "일·재물의 자리 — 무료 미리보기 (2-3문장은 명확, 마지막 ████ 처리). 흐름이 어떤지 (3-4문장)",
+  "thisYear": "올해 흐름 한 마디 — 어떤 자리에 머물고 있는지 (2-3문장)",
+  "warning": "조심할 자리 — 한 가지만 미리 (2-3문장, 부드럽게)",
+  "preview1": "타고난 기운 1장 — 처음 1-2문장은 명확, 마지막 1문장은 ████ 처리 (3-4문장)"
+}`;
+
+  const loadingSteps = [
+    '사주팔자를 펼치는 중…',
+    '오행의 균형을 가늠하는 중…',
+    '일주의 자리를 살피는 중…',
+    '기운의 흐름을 더듬는 중…',
+  ];
+  let stepIdx = 0;
+  const stepInterval = setInterval(() => {
+    stepIdx = (stepIdx + 1) % loadingSteps.length;
+    document.getElementById('loadingStep').textContent = loadingSteps[stepIdx];
+  }, 1500);
+
+  async function getReading() {
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 2500,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      const data = await response.json();
+      const text = data.content
+        .filter(b => b.type === 'text')
+        .map(b => b.text)
+        .join('\n')
+        .replace(/```json\s*|\s*```/g, '')
+        .trim();
+
+      const reading = JSON.parse(text);
+      showContent(reading);
+    } catch (err) {
+      console.error(err);
+      showContent({
+        dayMasterSummary: `${dayMasterName}일주의 자리는 깊고 차분한 기운을 지녔어요. 사람들이 처음엔 그 깊이를 알아보지 못해도, 시간이 지나면 그 자리의 단단함을 알아봅니다. 겉은 부드럽지만 속에는 단단한 심지가 있는 사람이에요.`,
+        elementsSummary: '그대의 오행은 균형이 어울리지만, 한 자리가 살짝 비어있어요. 그 비어있음이 오히려 그대만의 흐름을 만들어내고 있어요. 부족한 자리를 채우려 애쓰기보다, 가진 흐름을 따라가는 게 그대에게 맞아요.',
+        personality: '그대 안에는 두 가지 결이 있어요. 사람들 앞에선 차분하고 단정한데, 혼자 있을 땐 끊임없이 생각하고 깊이 들어가는 자리가 있죠. 이 두 결이 부딪히기도 하지만, 결국 그것이 그대를 더 깊은 사람으로 만들어요.',
+        loveBrief: '그대의 인연 자리는 흐름이 천천히 와요. 한 번 마음을 주면 깊이 들어가는 자리. 다만 ████████████ 시기에 ████████ 자리에서 풀려요. 가까운 시기에 ███████████ 한 사람이 다가올 수 있어요...',
+        workBrief: '일의 자리는 의외로 밝게 흐르고 있어요. 그대가 느끼는 막힘은 사실 ███████ 자리에서 오는 것. ████████ 시기가 풀이의 자리예요. 재물은 큰 자리보다 ███████████ 흐름으로 따라와요...',
+        thisYear: '올해 그대는 정리의 자리에 머물러 있어요. 큰 변화보다 천천히 다지는 시기. 다만 후반부에 한 자리가 풀리며 새로운 흐름이 시작될 자리가 있습니다.',
+        warning: '한 가지만 미리 짚어드리자면, 가까운 사람과의 자리에서 작은 오해가 깊어지지 않도록 조심하세요. 말보다 마음이 먼저 닿는 자리예요.',
+        preview1: '그대는 가을의 깊은 물 같은 자리예요. 겉은 잔잔하지만 안은 끊임없이 흐르고 있죠. 다만 ████████████████████████████ 이 시기에 ███████ 자리에서 흐름이 막힐 수 있어요...'
+      });
+    }
+  }
+
+  function showContent(reading) {
+    clearInterval(stepInterval);
+    document.getElementById('loadingInit').classList.add('hidden');
+    document.getElementById('content').classList.add('shown');
+
+    // Pillars
+    document.getElementById('p-h-year').textContent = yearP.stem;
+    document.getElementById('p-e-year').textContent = yearP.branch;
+    document.getElementById('p-h-month').textContent = monthP.stem;
+    document.getElementById('p-e-month').textContent = monthP.branch;
+    document.getElementById('p-h-day').textContent = dayP.stem;
+    document.getElementById('p-e-day').textContent = dayP.branch;
+    document.getElementById('p-h-time').textContent = timeP.stem;
+    document.getElementById('p-e-time').textContent = timeP.branch;
+
+    // Day master summary
+    document.getElementById('dayMasterSummary').textContent = reading.dayMasterSummary;
+
+    // Elements
+    const maxCount = Math.max(...elementCounts);
+    elemKeys.forEach((k, i) => {
+      const el = document.querySelector(`.element[data-elem="${k}"]`);
+      const pct = maxCount > 0 ? (elementCounts[i] / maxCount * 100) : 0;
+      setTimeout(() => {
+        el.querySelector('.element-bar').style.height = pct + '%';
+      }, 200 + i * 100);
+      el.querySelector('.element-count').textContent = elementCounts[i] + ' 개';
+    });
+    document.getElementById('elementsSummary').textContent = reading.elementsSummary;
+
+    // 추가 풀이 섹션들 (NEW)
+    if (reading.personality) document.getElementById('personalityText').textContent = reading.personality;
+    if (reading.loveBrief) document.getElementById('loveBriefText').textContent = reading.loveBrief;
+    if (reading.workBrief) document.getElementById('workBriefText').textContent = reading.workBrief;
+    if (reading.thisYear) document.getElementById('thisYearText').textContent = reading.thisYear;
+    if (reading.warning) document.getElementById('warningText').textContent = reading.warning;
+
+    // Preview 1
+    document.getElementById('preview1').textContent = reading.preview1;
+  }
+
+  // ─────────────────────────────────────────────
+  // COUNTDOWN
+  // ─────────────────────────────────────────────
+  function getEndOfMonth() {
+    const now = new Date();
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    lastDay.setHours(23, 59, 59, 999);
+    return lastDay;
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const target = getEndOfMonth();
+    const diff = target - now;
+    if (diff <= 0) {
+      ['cd-d','cd-h','cd-m','cd-s'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '00';
+      });
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(days).padStart(2, '0');
+    document.getElementById('cd-h').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-m').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cd-s').textContent = String(secs).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // FAQ 토글
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+
+  // 시작
+  getReading();
+</script>
+
+</body>
+</html>

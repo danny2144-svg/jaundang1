@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>자운당 — 자운 아씨와의 대화 4/6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0a0608;
+    --purple: #6d3a8a;
+    --purple-deep: #4a2858;
+    --purple-glow: #a060c8;
+    --gold: #d4a857;
+    --paper: #f5ede0;
+    --paper-dim: #d8cdb8;
+    --paper-soft: #a89e7a;
+  }
+
+  html, body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: var(--ink);
+  }
+  .device {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(109, 58, 138, 0.2);
+    padding-bottom: 100px;
+  }
+
+  .topbar {
+    padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .back-btn {
+    background: transparent;
+    border: 1px solid rgba(212, 168, 87, 0.4);
+    color: var(--paper);
+    width: 32px; height: 32px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .step-indicator {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .step-indicator strong { color: var(--paper); font-weight: 800; }
+
+  .progress-bar {
+    height: 3px;
+    background: rgba(212, 168, 87, 0.15);
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple-glow), var(--gold));
+    width: 66.67%;  /* 4/6 */
+    transition: width 0.4s ease;
+  }
+
+  .question-intro {
+    padding: 20px 22px 16px;
+    border-left: 3px solid var(--purple-glow);
+    margin: 16px 16px 0;
+  }
+  .q-tag {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: #e8c8f8;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .q-text {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--paper);
+    line-height: 1.7;
+  }
+
+  .char-section {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #3a1845 0%, #1a0a1f 70%, var(--ink) 100%);
+    margin-top: 12px;
+  }
+  .char-section img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  }
+  .char-fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--paper-soft); font-size: 11px;
+  }
+
+  .q-section {
+    padding: 24px 20px 0;
+  }
+  .q-headline {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 900;
+    font-size: 21px;
+    color: var(--paper);
+    margin-bottom: 18px;
+    letter-spacing: -0.6px;
+    line-height: 1.45;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option {
+    background: rgba(245, 237, 224, 0.07);
+    border: 1px solid rgba(212, 168, 87, 0.35);
+    color: var(--paper);
+    padding: 18px 20px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.5;
+    transition: all 0.2s ease;
+  }
+  .option:hover {
+    border-color: var(--gold);
+    background: rgba(160, 96, 200, 0.08);
+  }
+  .option.selected {
+    background: linear-gradient(135deg, rgba(160, 96, 200, 0.25), rgba(109, 58, 138, 0.15));
+    border-color: var(--purple-glow);
+    color: var(--paper);
+  }
+  .option .emoji {
+    margin-right: 10px;
+    font-size: 16px;
+    color: var(--gold);
+    font-weight: 800;
+  }
+
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 16px 22px;
+    background: linear-gradient(180deg, transparent, var(--ink) 30%);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+  }
+  .bottom-bar-inner {
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    gap: 8px;
+  }
+  .btn-prev, .btn-next {
+    padding: 17px 18px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+  }
+  .btn-prev {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid var(--paper-dim);
+    color: var(--paper);
+    padding-left: 22px; padding-right: 22px;
+  }
+  .btn-next {
+    flex: 1;
+    background: linear-gradient(180deg, var(--purple-glow), var(--purple));
+    color: var(--paper);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(160, 96, 200, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    letter-spacing: 1px;
+  }
+  .btn-next:disabled {
+    background: rgba(160, 96, 200, 0.2);
+    color: var(--paper-soft);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+</style>
+</head>
+<body>
+<div class="device">
+
+  <div class="topbar">
+    <a href="form-3.html" class="back-btn">‹</a>
+    <div class="step-indicator"><strong>4</strong> / 6</div>
+    <div style="width:32px"></div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+
+  <div class="question-intro">
+    <div class="q-tag">| 자운 아씨</div>
+    <div class="q-text">
+      이번엔 시기를 여쭙겠습니다.<br>
+      답하기 어려우시면 넘기셔도 됩니다.
+    </div>
+  </div>
+
+  <section class="char-section">
+    <img src="assets/character-pointing.jpg" alt="자운 아씨"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="char-fallback" style="display:none;">— 자운 아씨 안내 컷 —</div>
+  </section>
+
+  <section class="q-section">
+    <h2 class="q-headline">어느 시기를, 가장 알고 싶으십니까?</h2>
+    <div class="options">
+      <button type="button" class="option" data-value="this-year">
+        <span class="emoji">·</span> 올해 12개월의 흐름
+      </button>
+      <button type="button" class="option" data-value="big-decision">
+        <span class="emoji">·</span> 큰 결정 — 앞두고 계십니까
+      </button>
+      <button type="button" class="option" data-value="timing">
+        <span class="emoji">·</span> 시작할 시기 — 언제 움직여야 할지
+      </button>
+      <button type="button" class="option" data-value="stuck">
+        <span class="emoji">·</span> 막힌 자리 — 어디서 풀어야 할지
+      </button>
+      <button type="button" class="option" data-value="long-term">
+        <span class="emoji">·</span> 대운 — 앞으로의 10년 흐름
+      </button>
+      <button type="button" class="option" data-value="just-curious">
+        <span class="emoji">·</span> 그저, 제 사주 자체가 궁금합니다
+      </button>
+    </div>
+  </section>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-inner">
+      <a href="form-3.html" class="btn-prev">이전</a>
+      <button type="button" class="btn-next" id="nextBtn" disabled onclick="goNext()">다음으로 →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const data = JSON.parse(sessionStorage.getItem('saju_input') || '{}');
+
+  let selected = null;
+  document.querySelectorAll('.option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selected = btn.dataset.value;
+      document.getElementById('nextBtn').disabled = false;
+    });
+  });
+
+  if (data.q2) {
+    const btn = document.querySelector(`.option[data-value="${data.q2}"]`);
+    if (btn) btn.click();
+  }
+
+  function goNext() {
+    if (!selected) return;
+    data.q2 = selected;
+    sessionStorage.setItem('saju_input', JSON.stringify(data));
+    window.location.href = 'form-5.html';
+  }
+</script>
+
+</body>
+</html>

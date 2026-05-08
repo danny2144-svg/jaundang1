@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>자운당 — 자운 아씨와의 대화 6/6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0a0608;
+    --purple: #6d3a8a;
+    --purple-deep: #4a2858;
+    --purple-glow: #a060c8;
+    --gold: #d4a857;
+    --paper: #f5ede0;
+    --paper-dim: #d8cdb8;
+    --paper-soft: #a89e7a;
+  }
+
+  html, body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: var(--ink);
+  }
+  .device {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    position: relative;
+    background: var(--ink);
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(109, 58, 138, 0.2);
+    padding-bottom: 100px;
+  }
+
+  .topbar {
+    padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .back-btn {
+    background: transparent;
+    border: 1px solid rgba(212, 168, 87, 0.4);
+    color: var(--paper);
+    width: 32px; height: 32px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .step-indicator {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .step-indicator strong { color: var(--paper); font-weight: 800; }
+
+  .progress-bar {
+    height: 3px;
+    background: rgba(212, 168, 87, 0.15);
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple-glow), var(--gold));
+    width: 100%;  /* 6/6 */
+    transition: width 0.4s ease;
+  }
+
+  /* Character with bubble space above */
+  .char-section {
+    width: 100%;
+    position: relative;
+    background: var(--ink);
+  }
+  .bubble-zone {
+    background: linear-gradient(180deg, #1a0a1f 0%, var(--ink) 100%);
+    padding: 24px 16px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .char-image-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1a0a1f 0%, #3a1845 30%, #1a0a1f 100%);
+  }
+  .char-image-wrap img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  }
+  .char-fallback {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--paper-soft); font-size: 11px;
+  }
+
+  .bubbles-overlay {
+    position: absolute;
+    top: 8%;
+    left: 5%;
+    right: 5%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bubble {
+    background: rgba(255, 255, 255, 0.97);
+    color: #0a0608;
+    padding: 16px 20px;
+    border-radius: 22px 22px 22px 6px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.3px;
+    max-width: 75%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .bubble.right {
+    margin-left: auto;
+    border-radius: 22px 22px 6px 22px;
+  }
+  .bubble strong { color: var(--purple); font-weight: 800; }
+
+  /* ━━━━━━━━━━ 신당 부적 / 옛 문서 톤 편지지 ━━━━━━━━━━ */
+  .letter-section {
+    padding: 32px 16px 0;
+    position: relative;
+  }
+  /* 옛 종이 / 한지 텍스처 배경 */
+  .letter-frame {
+    background:
+      /* 옅은 얼룩 무늬 */
+      radial-gradient(ellipse at 20% 30%, rgba(109, 58, 138, 0.06) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 70%, rgba(74, 40, 88, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(212, 168, 87, 0.04) 0%, transparent 60%),
+      /* 한지 베이스 */
+      linear-gradient(180deg, #2a1838 0%, #1f1028 50%, #2a1838 100%);
+    color: #d8c8e8;
+    padding: 0;
+    position: relative;
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.7),
+      0 0 60px rgba(160, 96, 200, 0.15),
+      inset 0 0 0 1px rgba(212, 168, 87, 0.5),
+      inset 0 0 80px rgba(109, 58, 138, 0.15);
+  }
+  /* 부적 양옆 한자 장식 */
+  .letter-frame::before {
+    content: '紫';
+    position: absolute;
+    top: 12px; left: 12px;
+    color: rgba(212, 168, 87, 0.4);
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .letter-frame::after {
+    content: '雲';
+    position: absolute;
+    bottom: 12px; right: 12px;
+    color: rgba(212, 168, 87, 0.4);
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  /* 편지 헤더 — 신당 헌사 스타일 */
+  .letter-header {
+    padding: 28px 24px 18px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.25);
+    position: relative;
+  }
+  /* 헤더 위 별 장식 */
+  .letter-header::before {
+    content: '◇  ◆  ◇';
+    display: block;
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 8px;
+    margin-bottom: 14px;
+    opacity: 0.7;
+  }
+
+  /* 인장 — 진짜 신당 도장처럼 */
+  .letter-seal {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    background:
+      radial-gradient(circle at 30% 30%, #8a3aaa 0%, #6d3a8a 60%, #4a2858 100%);
+    color: #f5ede0;
+    border: 2.5px solid #d4a857;
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 14px;
+    transform: rotate(-4deg);
+    box-shadow:
+      0 4px 16px rgba(0,0,0,0.6),
+      0 0 24px rgba(160, 96, 200, 0.4),
+      inset 0 0 12px rgba(0,0,0,0.4);
+    letter-spacing: -3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .letter-seal::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    border-radius: 2px;
+    transform: rotate(2deg);
+  }
+
+  .letter-title {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #f5ede0;
+    margin-bottom: 6px;
+    letter-spacing: 6px;
+    text-shadow: 0 2px 12px rgba(160, 96, 200, 0.4);
+  }
+  .letter-subtitle {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    opacity: 0.8;
+  }
+
+  /* 편지 본문 — 옛 책처럼 어두운 종이 + 줄 */
+  .letter-body {
+    padding: 28px 24px 20px;
+    position: relative;
+    /* 가로줄 — 어두운 보라 톤 */
+    background-image:
+      linear-gradient(transparent 28px, rgba(212, 168, 87, 0.18) 28px, rgba(212, 168, 87, 0.18) 29px, transparent 29px);
+    background-size: 100% 29px;
+    background-position: 0 18px;
+    min-height: 220px;
+  }
+  .letter-textarea {
+    width: 100%;
+    min-height: 220px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Gowun Batang', 'Nanum Myeongjo', serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 29px;
+    color: #f5ede0;
+    resize: none;
+    padding: 0;
+    letter-spacing: -0.2px;
+  }
+  .letter-textarea::placeholder {
+    color: rgba(216, 200, 232, 0.45);
+    font-style: italic;
+  }
+
+  /* 편지 푸터 — 인장 자리 */
+  .letter-footer {
+    padding: 14px 24px 22px;
+    border-top: 1px solid rgba(212, 168, 87, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, transparent, rgba(74, 40, 88, 0.3));
+  }
+  .letter-from {
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+  .letter-from::before {
+    content: '◆  ';
+    opacity: 0.6;
+  }
+  .letter-counter {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: rgba(212, 168, 87, 0.7);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .letter-counter span { color: #f5ede0; }
+
+  .skip-note {
+    text-align: center;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--paper-soft);
+    margin-top: 12px;
+    padding: 0 20px;
+  }
+
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 16px 22px;
+    background: linear-gradient(180deg, transparent, var(--ink) 30%);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+  }
+  .bottom-bar-inner {
+    width: 100%;
+    max-width: 430px;
+    display: flex;
+    gap: 8px;
+  }
+  .btn-prev, .btn-next {
+    padding: 17px 18px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+  }
+  .btn-prev {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid var(--paper-dim);
+    color: var(--paper);
+    padding-left: 22px; padding-right: 22px;
+  }
+  .btn-next {
+    flex: 1;
+    background: linear-gradient(180deg, var(--purple-glow), var(--purple));
+    color: var(--paper);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(160, 96, 200, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="device">
+
+  <div class="topbar">
+    <a href="form-5.html" class="back-btn">‹</a>
+    <div class="step-indicator"><strong>6</strong> / 6</div>
+    <div style="width:32px"></div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+
+  <section class="char-section">
+    <div class="char-image-wrap">
+      <img src="assets/character-letter.jpg" alt="자운 아씨"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="char-fallback" style="display:none;">— 자운 아씨 봉투 컷 —</div>
+    </div>
+    <div class="bubble-zone">
+      <div class="bubble">
+        마지막으로 한 가지, 마음에 두고 계신 자리가 있다면
+      </div>
+      <div class="bubble right">
+        <strong>이곳에 적어주세요.</strong> 풀이에 함께 담겠습니다.
+      </div>
+    </div>
+  </section>
+
+  <section class="letter-section">
+    <div class="letter-frame">
+      <div class="letter-header">
+        <div class="letter-seal">紫雲</div>
+        <div class="letter-title">자운 아씨께</div>
+        <div class="letter-subtitle">─ 자유로이 적어주십시오 ─</div>
+      </div>
+      <div class="letter-body">
+        <textarea
+          id="freeText"
+          class="letter-textarea"
+          placeholder="혼자 곱씹어 본 자리,&#10;누구에게도 말 못 한 그 자리…&#10;&#10;편히 적어주십시오.&#10;자운 아씨가 짚어드리겠습니다."
+          maxlength="500"></textarea>
+      </div>
+      <div class="letter-footer">
+        <div class="letter-from">— 보내는 이</div>
+        <div class="letter-counter"><span id="counter">0</span> / 500</div>
+      </div>
+    </div>
+
+    <p class="skip-note">
+      ※ 어려우시면 비워두셔도 됩니다
+    </p>
+  </section>
+
+  <div class="bottom-bar">
+    <div class="bottom-bar-inner">
+      <a href="form-5.html" class="btn-prev">이전</a>
+      <button type="button" class="btn-next" onclick="goNext()">풀이를 받겠습니다 →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const data = JSON.parse(sessionStorage.getItem('saju_input') || '{}');
+
+  const textarea = document.getElementById('freeText');
+  const counter = document.getElementById('counter');
+
+  if (data.freeText) textarea.value = data.freeText;
+  counter.textContent = textarea.value.length;
+
+  textarea.addEventListener('input', () => {
+    counter.textContent = textarea.value.length;
+  });
+
+  function goNext() {
+    data.freeText = textarea.value.trim();
+    sessionStorage.setItem('saju_input', JSON.stringify(data));
+    window.location.href = 'free_analysis.html';
+  }
+</script>
+
+</body>
+</html>
